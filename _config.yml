@@ -1,1 +1,10 @@
-theme: jekyll-theme-slate
+title: Advanced Machine Learning
+email: hemangsk@gmail.com
+description: GANs (Generative Adversarial Networks)
+baseurl: ""
+url: ""
+paginate: 5
+theme-dark: false
+github_usernames: [adityagupta1089, rajatsharma2204]
+plugins: [jekyll-paginate, kramdown]
+markdown: kramdown
