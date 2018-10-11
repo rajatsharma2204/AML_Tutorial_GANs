@@ -2,8 +2,7 @@ title: Advanced Machine Learning
 description: GANs (Generative Adversarial Networks)
 baseurl: "/AML_Tutorial_GANs"
 url: "https://rajatsharma2204.github.io"
-paginate: 5
 theme-dark: false
 github_usernames: [adityagupta1089, rajatsharma2204]
-plugins: [jekyll-paginate, kramdown]
+plugins: [kramdown]
 markdown: kramdown
