@@ -43,7 +43,7 @@ So, both compete against one another and both try to improve themselves rather t
 
 ## Typical architecture of Generator (for image synthesis)
 
-![](/images/generator.png)
+![]({{site.baseurl}}/images/generator.png)
 
 The noisy input is deconvoluted to form the final image.
 

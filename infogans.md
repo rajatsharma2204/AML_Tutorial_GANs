@@ -27,7 +27,7 @@ So, if there is a correlation, the function that the GAN is trying to decrease d
 
 This leads to finding vectors c that directly influence the output.
 
-![](/images/infoGANs.png)
+![]({{site.baseurl}}/images/infoGANs.png)
 
 Here, varying
 
