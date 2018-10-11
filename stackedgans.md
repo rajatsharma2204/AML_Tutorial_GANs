@@ -5,21 +5,21 @@ permalink: /stackedgans/
 ordinal: 3
 ---
 
-Stacked GANs are top-down stack of GANs, each trained to generate “plausible” lower-level representations conditioned on higher-level representations.
+Stacked GANs are top-down stack of GANs, each trained to generate “plausible” lower-level representations conditioned on higher-level representations. Prior to this there was quite success in bottom-up approach of discrimination by CNNs which is learning useful representations from the data, whereas learning top-down generative models will help to explain the data distribution and there was low success for data with large variations with state-of-the-art DNNs was still bad.
 
 ## Pre-trained encoder
 
-A bottom up DNN pre-trained for classification is referred to as the encoder $E$. Each DNN entails a mapping $h_{i+1}=E_i(h_i)$, where $i\in\{0,1,\ldots, N-1\}$
+A bottom up DNN pre-trained for classification is referred to as the encoder $E$. Each DNN entails a mapping $h_{i+1}=E_i(h_i)$, where $i\in\{0,1,\ldots, N-1\}$ where $N$ is the number of hierarchies. Each $E_i$ contains a sequence of neural layers. We start with $x=h_0$ and final classification result is $y=h_N$
 
 ## Stacked Generators
 
- Our goal is to train a top-down generator $G$ that inverts $E$. $G$ consists of a top-down stack of generators $G_i$, each trained to invert a bottom up mapping $E_i$. Each takes in a higher-level feature and a noise vector as inputs, and outputs the lower-level feature $h_i$.
+ Our goal is to train a top-down generator $G$ that inverts $E$. $G$ consists of a top-down stack of generators $G_i$, each trained to invert a bottom up mapping $E_i$. Each takes in a higher-level feature and a noise vector as inputs, and outputs the lower-level feature $\hat h_i$.
 
 We first train each GAN independently and then train them jointly in an end-to-end manner.
 
-Each generator receives conditional input from encoders in the independent training stage, and from the upper generators in the joint training stage. In other words, $\hat h_i=G_i(h_{i+1}, z_i)$ during independent training and  $h_i=G_i(\hat h_{i+1}, z_i)$ during joint training. The loss equations are for independent training stage but can be easily modified to joint training by replacing  $h_{i+1}$ with $\hat h_{i+1}$ Intuitively, the total variations of images could be decomposed into multiple levels, with higher-level semantic variations (e.g., attributes, object categories, rough shapes) and lower-level variations (e.g., detailed contours and textures, background clutters).
-
 ![](/images/stackGAN.png)
+
+Each generator receives conditional input from encoders in the independent training stage, and from the upper generators in the joint training stage. In other words, $\hat h_i=G_i(h_{i+1}, z_i)$ during independent training and  $h_i=G_i(\hat h_{i+1}, z_i)$ during joint training. The loss equations are for independent training stage but can be easily modified to joint training by replacing  $h_{i+1}$ with $\hat h_{i+1}$ Intuitively, the total variations of images could be decomposed into multiple levels, with higher-level semantic variations (e.g., attributes, object categories, rough shapes) and lower-level variations (e.g., detailed contours and textures, background clutters).
 
 This allows using different noise variables to represent different levels of variations. The training procedure is shown in Figure. Each generator  is trained with a linear combination of three loss terms: adversarial loss, conditional loss, and entropy loss with different parametric weights.  
 $${\cal L}_{G_i}=\lambda {\cal L}_{G_i}^{adv}+{\cal L}_{G_i}^{cond}+{\cal L}_{G_i}^{ent}$$
@@ -31,8 +31,6 @@ $$\displaystyle {\cal L}_{D_i}={\mathbb E}_{h_i\sim P_{data, E}}[-\log(D_i(h_i))
 And  is trained to fool the representation discriminator  with the adversarial loss defined by:
 
 $$\displaystyle {\cal L}_{G_i}^{adv}={\mathbb E}_{h_{i+1}\sim P_{data, E}, z_i\sim P_{z_i}}[-\log(D_i(G_i(h_{i+1}, z)))]$$
-
-During joint training, the adversarial loss provided by representational discriminators can also be regarded as a type of deep supervision, providing intermediate supervision signals. In our current formulation, $E$ is a discriminative model, and $G$ is a generative model conditioned on labels. However, it is also possible to train SGAN without using label information: $E$ can be trained with an unsupervised objective and $G$ can be cast into an unconditional generative model by removing the label input from the top generator.
 
 ## Sampling
 
