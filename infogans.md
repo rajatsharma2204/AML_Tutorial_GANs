@@ -2,7 +2,7 @@
 layout: page
 title : Info GANs
 permalink: /infogans/
-ordinal: 2
+ordinal: 3
 ---
 
 InfoGANs are a variation of GANs. The problem they try to resolve is
