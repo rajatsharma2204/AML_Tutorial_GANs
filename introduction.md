@@ -5,7 +5,9 @@ permalink: /introduction/
 ordinal: 1
 ---
 
-Generative Adversarial Networks (GANs) are machine learning models that solve the problem of generating new data from the probability space of the training data instead of simply classification and regression. GANs consist of two neural networks that compete against one another in a zero-sum game. The two networks are called Generator and Discriminator and their functions are as follows
+Generative Adversarial Networks (GANs) are generative machine learning models that solve the problem of generating new data from the probability space of the training data instead of simply classification and regression.
+
+GANs consist of two neural networks that compete against one another in a zero-sum game. The two networks are called Generator and Discriminator and their functions are as follows
 
 ## Generator
 
@@ -17,8 +19,13 @@ The task of the discriminator is to successfully distinguish between real sample
 
 $$\displaystyle \min\limits_G\max\limits_D V(D, G) = {\mathbb E}_{x\sim p_{\rm data}(x)}[\log D(x)]+{\mathbb E}_{x\sim p_z(z)}[\log (1-D(G(z)))] $$
 
-This function is simple to understand. $D(x)$ represents that discriminator thinks that x came from the probability distribution of the training set.
-If this function has a high value then
+This function is simple to understand.
+
+$D(x)$ represents the probability that x came from the probability distribution of the training set (according to the discriminator).
+
+$G(z)$ represents the output of the generator on the latent vector z.
+
+If this function ($V(G, D)$) has a high value then -
 
 1. The first term calculates the expectation of log probability that the data point sampled from the training dataset has a high probability of being predicted as sampled from training data by the discriminator.
 2. The second term is calculated over the probability distribution of the noise vectors that is used by the input of the generator for generating new points. It is the expectation that this noise vector z, when converted into a data point by the generator (i.e. $G(z)$) has a very low probability of being classified as from the original training data space.
@@ -47,15 +54,21 @@ So, both compete against one another and both try to improve themselves rather t
 
 The noisy input is deconvoluted to form the final image.
 
+## Experiments
+
+We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the Code folder.
+
+![]({{site.baseurl}}/images/gans_result.gif)
+
 ## Problems associated with GANs
 
 Other than general problems associated with machine learning models such as overfitting and hyperparameter selection, GANs have several other problems associated with them. Some of them are as follows
-* **Non-Convergence** : The model parameters never converge to an optimum and keep oscillating.
+* **Non-Convergence** : The model parameters never converge to an optimum under some settings and keep oscillating.
 * **Mode Collapse** : The generator always produces the same or very similar output irrespective of the input.
 * **Diminished** : The discriminator might become very strong at distinguishing. In that case, the gradient of the generator might become negligible and so, it might stop learning.
+* **Non-Semantic Vectors** : The latent space vectors are sampled from a prior probability distribution. So, there is no way for semantically deciding the type of images required. For generating a particular type of image (in an unsupervised setting), all posibile latent space vectors might need to be looked at. InfoGANs provide a way for encoding these semantic features in addition to the random vector for generating images with certain properties (such as specific stroke thickness in case of MNIST dataset images).
 
 
 ## References
 - [Goodfellow, Ian, et al. "Generative adversarial nets." *Advances in neural information processing systems.* 2014.](https://arxiv.org/pdf/1406.2661.pdf)
-- [Radford, Alec, Luke Metz, and Soumith Chintala. "Unsupervised representation learning with deep convolutional generative adversarial networks." *arXiv preprint arXiv:1511.06434* (2015).](https://arxiv.org/pdf/1511.06434.pdf)
 

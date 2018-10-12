@@ -8,12 +8,16 @@
 <div class="wrapper">
   <div class="trigger site-navigation">
 	<a class="page-link" href="{{site.url}}{{site.baseurl}}/">HOME</a>
-
+	<br>
 	{% assign sorted_pages = (site.pages | sort: 'ordinal') %}
     {% for sitePage in sorted_pages %}
+	{% assign mod = forloop.index | modulo: 1 %}
     {% if sitePage.title %}
 
     <span class="exclamationMark">/</span><a class="page-link" href="{{sitePage.url | prepend: site.baseurl }}">{{sitePage.title}}</a>
+	{% if mod == 0 %}
+	<br>
+	{% endif %}
     {% endif %}
     {% endfor %}
   </div>

@@ -18,7 +18,7 @@ So we need a better weight normalization method that can stabilize the training 
 
 ## Basics
 
-Lets us have a simple neural network with input $x$ that gives output $f(x, \theta)$ where $\theta = \{W^1, W^2, ... W^{L+1}\}$ is the set of weights and $a_i$ are the non-linear activation functions
+Lets us have a simple neural network with input $x$ that gives output $f(x, \theta)$ where $\theta = \\{W^1, W^2, ... W^{L+1}\\}$ is the set of weights and $a_i$ are the non-linear activation functions
 
 $$f(x,\theta)=W^{L+1}a_L(W^L(a_{L-1}(W^{L-1}(\ldots a_1(W^1x)\ldots))))$$
 
@@ -44,27 +44,27 @@ which can be unbounded or incomputable. So we need to add some regularize condit
 
 **Spectral Norm:** is the largest singular value in a matrix $A$ and we can think of it as the largest amount by which it can scale a value, i.e.
 
-$$\sigma(A)=\max\limits_{h:h\neq0}\frac{||Ah||_2}{||h||_2}=\max\limits_{||h||_2\le 1}||Ah||_2$$
+$$\sigma(A)=\max\limits_{h:h\neq0}\frac{\vert\vert Ah\vert\vert_2}{\vert\vert h\vert\vert_2}=\max\limits_{\vert\vert h\vert\vert_2\le 1}\vert\vert Ah\vert\vert_2$$
 
 Here $h$ are the values that are used to find the scaling.
 
 In spectral normalization we constrain the spectral norm of each layer $g:h_{in}\mapsto h_{out}$ 
 
-**Lipschitz Norm:** $$||g||_{\rm Lip} = \sup_h\sigma(\nabla g(h))$$ is the supremum of the spectral norm of gradient of $g$
+**Lipschitz Norm:** $$\vert\vert g\vert\vert_{\rm Lip} = \sup_h\sigma(\nabla g(h))$$ is the supremum of the spectral norm of gradient of $g$
 
-- For a linear layer we have $||g||_{\rm Lip}=\sup_h\sigma(W)=\sigma (W)$
-- We assume that the Lipschitz norm of the activation function $||a_l||_{\rm Lip}=1$
-- We have $||g_1\circ g_2||_{\rm Lip}\le ||g_1||_{\rm Lip}\cdot ||g_2||_{\rm Lip} $
+- For a linear layer we have $\vert\vert g\vert\vert_{\rm Lip}=\sup_h\sigma(W)=\sigma (W)​$
+- We assume that the Lipschitz norm of the activation function $\vert\vert a_l\vert\vert_{\rm Lip}=1​$
+- We have $\vert\vert g_1\circ g_2\vert\vert_{\rm Lip}\le \vert\vert g_1\vert\vert_{\rm Lip}\cdot \vert\vert g_2\vert\vert_{\rm Lip} ​$
 
 So we have:
 
-$$\begin{align*}||f||_{\rm Lip}\le &||(h_L\mapsto W^{L+1}h_L)||_{\rm Lip}\cdot &||a_L||_{\rm Lip}\\\cdot &||(h_{L-1}\mapsto W^Lh_{L-1})||_{\rm Lip}\cdot&||a_{L-1}||_{\rm Lip}\\\cdot&\ldots\\\cdot&||(h_0\mapsto W^1h_0)||_{\rm Lip}\\=&\prod_{l=1}^{L+1}||(h_{l-1}\mapsto W^lh_{l-1}||_{\rm Lip}\\=&\prod_{l=1}^{L+1}\sigma(W^l)\end{align*}​$$
+$$\begin{align*}\vert\vert f\vert\vert_{\rm Lip}\le &\vert\vert(h_L\mapsto W^{L+1}h_L)\vert\vert_{\rm Lip}\cdot &\vert\vert a_L\vert\vert_{\rm Lip}\\\cdot &\vert\vert(h_{L-1}\mapsto W^Lh_{L-1})\vert\vert_{\rm Lip}\cdot&\vert\vert a_{L-1}\vert\vert_{\rm Lip}\\\cdot&\ldots\\\cdot&\vert\vert(h_0\mapsto W^1h_0)\vert\vert_{\rm Lip}\\=&\prod_{l=1}^{L+1}\vert\vert(h_{l-1}\mapsto W^lh_{l-1}\vert\vert_{\rm Lip}\\=&\prod_{l=1}^{L+1}\sigma(W^l)\end{align*}$$
 
 Finally we normalize the spectral norm of the weight matrix $W$ so that we get $\sigma(W)=1$, i.e.
 
 $$\displaystyle \bar W_{SN}(W)=\frac W{\sigma(W)}$$
 
-We can normalize each weight using this and we will finally get that $||f||_{\rm Lip}\le 1$
+We can normalize each weight using this and we will finally get that $\vert\vert f\vert\vert_{\rm Lip}\le 1​$
 
 **Note:** If we use SVD then it would become very inefficient to compute $\sigma(W)$, instead we can use the power iteration method.
 

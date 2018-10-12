@@ -46,13 +46,17 @@ A model generator architecture is shown in the figure.
 
 ![]({{site.baseurl}}/images/generator.png)
 
-Empirically, it was observed that with learning rate $0.0002$ and $\beta_1$ $0.5$ in Adam optimizer, instability was reduced even further.
+Empirically, it was observed that with learning rate 0.0002 and $\beta_1$ = 0.5 in Adam optimizer, instability was reduced even further.
 
 ## Experiments
 
-A model was trained on the LSUN bedrooms dataset containing 3 million examples. To verify that the model hasn't memorized the training examples, interpolation was done on 9 random points in the latent space. It was observed that all the images generated represent a plausible bedroom with a smooth transition. This suggests that the model hasn't memorized the examples, but instead has discovered the relevant features for the creation of the relevant images.
+1. (From paper) A model was trained on the LSUN bedrooms dataset containing 3 million examples. To verify that the model hasn't memorized the training examples, interpolation was done on 9 random points in the latent space. It was observed that all the images generated represent a plausible bedroom with a smooth transition. This suggests that the model hasn't memorized the examples, but instead has discovered the relevant features for the creation of the relevant images.
 
 ![]({{site.baseurl}}/images/dcgans_result.png)
+
+2. (From code) We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the Code folder.
+
+![]({{site.baseurl}}/images/dcgans_result.gif)
 
 ## Face Arithmatic
 
@@ -66,3 +70,4 @@ output image corresponded to the expected output category (i.e. "smiling man"). 
 ## References
 
 - [Radford, Metz, et al. "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks" *CoRR*. 2015.](https://arxiv.org/pdf/1511.06434.pdf)
+>>>>>>> 70750449273ff6f2f1c690eb31a24db6d23d0e97

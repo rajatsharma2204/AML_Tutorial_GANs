@@ -9,7 +9,7 @@ Stacked GANs are top-down stack of GANs, each trained to generate “plausible�
 
 ## Pre-trained encoder
 
-A bottom up DNN pre-trained for classification is referred to as the encoder $E$. Each DNN entails a mapping $h_{i+1}=E_i(h_i)$, where $i\in\{0,1,\ldots, N-1\}$ where $N$ is the number of hierarchies. Each $E_i$ contains a sequence of neural layers. We start with $x=h_0$ and final classification result is $y=h_N$
+A bottom up DNN pre-trained for classification is referred to as the encoder $E$. Each DNN entails a mapping $h_{i+1}=E_i(h_i)$, where $i\in\\{0,1,\ldots, N-1\\}$ where $N$ is the number of hierarchies. Each $E_i$ contains a sequence of neural layers. We start with $x=h_0$ and final classification result is $y=h_N$
 
 ## Stacked Generators
 
@@ -34,7 +34,7 @@ $$\displaystyle {\cal L}_{D_i}={\mathbb E}_{h_i\sim P_{data, E}}[-\log(D_i(h_i))
 
 And  is trained to fool the representation discriminator  with the adversarial loss defined by:
 
-$$\displaystyle {\cal L}_{G_i}^{adv}={\mathbb E}_{h_{i+1}\sim P_{data, E}, z_i\sim P_{z_i}}[-\log(D_i(G_i(h_{i+1}, z)))]$$
+$$\displaystyle {\cal L}_{G_i}^{adv}={\mathbb E}_{h_{i+1}\sim P_{data, E}, z_i\sim P_{z_i}}[-\log(D_i(G_i(h_{i+1}, z)))]​$$
 
 ## Sampling
 
