@@ -1,4 +1,4 @@
-# AML_Tutorial_GANs
+# AML Tutorial GANs
 This repository contains the code for the tutorial on GANs for the course Advanced Machine Learning
 # Introduction
 Generative Adversarial Networks (GANs) are machine learning models that solve the problem of generating new data from the probability space of the training data instead of simply classification and regression. GANs consist of two neural networks that compete against one another in a zero-sum game. The two networks are called Generator and Discriminator and their functions are as follows -
