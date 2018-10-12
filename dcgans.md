@@ -2,7 +2,7 @@
 layout: page
 title : DCGANs
 permalink: /dcgans/
-ordinal: 3
+ordinal: 2
 ---
 
 DCGANs are a variation of GANs. The problem they try to resolve is -
