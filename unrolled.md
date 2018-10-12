@@ -27,13 +27,13 @@ The main idea presented in this paper is that, the generator just tries to fool 
 
 An example of such oscillation -
 
-    Consider two generator states $\theta_{G_1}$ and $\theta_{G_2}$ and two corresponding discriminator states $\theta_{D_1}$ and $\theta_{D_2}$ respectively. Now, let's say generator before training, is currently at $\theta_{G_1}$ and the discriminator after training, is at $\theta_{D_1}$. Let the generator after training, go to state $\theta_{G_2}$ which fools the discriminator successfully.
+   Consider two generator states $\theta_{G_1}$ and $\theta_{G_2}$ and two corresponding discriminator states $\theta_{D_1}$ and $\theta_{D_2}$ respectively. Now, let's say generator before training, is currently at $\theta_{G_1}$ and the discriminator after training, is at $\theta_{D_1}$. Let the generator after training, go to state $\theta_{G_2}$ which fools the discriminator successfully.
 
-    Now, after training the discriminator, let the discriminator go to state $\theta_{D_2}$ and let's say, due to this, the generator can't fool it anymore.
+   Now, after training the discriminator, let the discriminator go to state $\theta_{D_2}$ and let's say, due to this, the generator can't fool it anymore.
 
-    Let's say that generator at state $\theta_{G_1}$ could successfully fool discriminator at state $\theta_{D_2}$. Then, after training the generator again, the generator could go back to state $\theta_{G_1}$ from state $\theta_{G_2}$.
+   Let's say that generator at state $\theta_{G_1}$ could successfully fool discriminator at state $\theta_{D_2}$. Then, after training the generator again, the generator could go back to state $\theta_{G_1}$ from state $\theta_{G_2}$.
 
-    This could lead to an endless oscillation.
+   This could lead to an endless oscillation.
 
 So, to avoid such as oscillation, the idea is to train the generator with respect to the approximate discriminator, a few steps into the future.
 
