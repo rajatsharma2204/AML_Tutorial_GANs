@@ -21,9 +21,9 @@ One main failure of GANs is when generator keeps generating same point (example)
 
 - Let $f(x_i)\in\mathbb R^A$ denote vector of features for input $x_i$ by an intermediate layer in the discriminator.
 - We then multiply this by tensor $T\in\mathbb R^{A\times B\times C}$ which gives us $M_i\in\mathbb R^{B\times C}$
-- We then compute $L_1​$ distance between the rows of the resulting matrix $M_i​$ across samples $i\in\{1,2,\ldots n\}​$ and apply a negative exponential $c_b(x_i, x_j)=\exp (-<span class="">\vert\vert</span>M_{i,b}-M_{j, b}<span class="">\vert\vert</span>_{L_1})\in \mathbb R​$ 
-- The output $o(x_i)_b=\sum_{j=1}^nc_b(x_i, x_j)\in \mathbb R$ for the minibatch layer for a sample $x_i$
-- The output for the layer is $o(x_i)=[o(x_i)_1,o(x_i)_2,\ldots,o(x_i)_B]\in\mathbb R^B$
+- We then compute $L_1$ distance between the rows of the resulting matrix $M_i$ across samples $i\in\{1,2,\ldots n\}$ and apply a negative exponential $c_b(x_i, x_j)=\exp (-\vert\vert M_{i,b}-M_{j, b}\vert\vert_{L_1})\in {\mathbb R}$ 
+- The output $o(x_i)_b=\sum\limits\_{j=1}^nc_b(x_i, x_j)\in {\mathbb R}$ for the minibatch layer for a sample $x_i$
+- The output for the layer is $o(x_i)=[o(x_i)_1,o(x_i)_2,\ldots,o(x_i)_B]\in\mathbb R^B​$
 - This is concatenated with $f(x_i)$ and fed to next layer of discriminator that helps as side information.
 
 ### Historical Averaging
