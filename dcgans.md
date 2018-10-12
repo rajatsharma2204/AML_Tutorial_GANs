@@ -46,7 +46,7 @@ A model generator architecture is shown in the figure.
 
 ![]({{site.baseurl}}/images/generator.png)
 
-Empirically, it was observed that with learning rate 0.0002 and \beta_1 0.5 in Adam optimizer, instability was reduced even further.
+Empirically, it was observed that with learning rate 0.0002 and $\beta_1$ = 0.5 in Adam optimizer, instability was reduced even further.
 
 ## Experiments
 
