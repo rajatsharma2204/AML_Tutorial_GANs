@@ -54,6 +54,12 @@ So, both compete against one another and both try to improve themselves rather t
 
 The noisy input is deconvoluted to form the final image.
 
+## Experiments
+
+We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the Code folder.
+
+![]({{site.baseurl}}/images/gans_result.gif)
+
 ## Problems associated with GANs
 
 Other than general problems associated with machine learning models such as overfitting and hyperparameter selection, GANs have several other problems associated with them. Some of them are as follows
