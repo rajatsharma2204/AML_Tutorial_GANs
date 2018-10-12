@@ -20,6 +20,7 @@ Let optimal parameters be $\theta_G^* $ and $\theta_D^* $ for generator and disc
 Then, using the loss equation of vanilla GANs -
 
 $$\theta_G^* = argmin_{\theta_G} \max_{\theta_D} f(\theta_G, \theta_D) = argmin_{\theta_G} f(\theta_G, \theta_D^* (\theta_G))$$
+
 $$\theta_D^*(\theta_G) = argmax_{\theta_D} f(\theta_G, \theta_D)$$
 
 The main idea presented in this paper is that, the generator just tries to fool the discriminator at this point of time. However, this could lead to oscillation.
@@ -39,6 +40,7 @@ So, to avoid such as oscillation, the idea is to train the generator with respec
 Consider the following recursive definintion -
 
 $$\theta_D^0 = \theta_D$$
+
 $$\theta_D^{k+1} = \theta_D^k + \eta^k \frac{df(\theta_G, \theta_D^K)}{d \theta_D^k}$$
 
 i.e. the next value of $\theta_D$ is defined by taking a small step of size $\eta^k$ in the direction of increasing $f(\theta_G, \theta_D^k)$. So, $\theta_D^{k+1}$ represents the state of the discriminator if the generator remains constant for k+1 steps and the discriminator is trained for k+1 steps.
@@ -54,8 +56,9 @@ This means that the generator is updated using the approximate discriminator fun
 
 However, the discriminator is updated in the same way as vanilla GANs, i.e. using only the current generator. So, the update equations are -
 
-$$\theta_G \rightarrow \theta_G - \eta \frac{df_K(\theta_G, \theta_D)}{d \theta_G}$$
-$$\theta_D \rightarrow \theta_D + \eta \frac{df(\theta_G, \theta_D)}{d \theta_D}$$
+$$\theta_G \leftarrow \theta_G - \eta \frac{df_K(\theta_G, \theta_D)}{d \theta_G}$$
+
+$$\theta_D \leftarrow \theta_D + \eta \frac{df(\theta_G, \theta_D)}{d \theta_D}$$
 
 ![]({{site.baseurl}}/images/unrolled_gans_proc.png)
 
