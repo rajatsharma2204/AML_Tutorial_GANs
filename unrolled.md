@@ -48,6 +48,7 @@ i.e. the next value of $\theta_D$ is defined by taking a small step of size $\et
 So, this is an approximation of the future discriminator.
 
 For training the generator, we use the $f_K(\theta_G, \theta_D)$ defined as follows -
+
 $$f_K(\theta_G, \theta_D) = f(\theta_G, \theta_D^K(\theta_G, \theta_D))$$
 
 where $\theta_D^K$ represents using $\theta_G$ and $\theta_D$ as initial values for the recursive calculation defined above for finding $\theta_D^K$.
