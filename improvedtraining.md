@@ -2,7 +2,7 @@
 layout: page
 title : Improved Techniques for Training GANs
 permalink: /improvedtraining/
-ordinal: 7
+ordinal: 6
 ---
 
 ## Convergent GAN Training
@@ -46,7 +46,11 @@ Batch normalization is quite successful in improving the performance of neural n
 
 To get an overall objective function for GAN which is usually done by human annotation we need an automatic method to evaluate samples. 
 
-- We apply the inception model to every generated image to get the conditional label distribution $p(y\mid x)$. 
+- We apply the inception model to every generated image to get the conditional label distribution $p(y\mid x)​$. 
   - Meaningful objects containing images will have $p(y\mid x)​$ with low entropy.
   - We require varied images so we have $\int p\left(y\mid x=G(z)\right)dz$ should have high entropy.
 - So the combined metric is $\exp({\mathbb E}_x{\rm KL}(p(y\mid x)\vert\vert p(y)))$ where $\rm KL$ is KL-divergence.
+
+## References
+
+- [Salimans, Tim, et al. "Improved techniques for training gans." *Advances in Neural Information Processing Systems*. 2016.](http://papers.nips.cc/paper/6124-improved-techniques-for-training-gans)
