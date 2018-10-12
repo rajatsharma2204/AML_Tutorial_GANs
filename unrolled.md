@@ -15,28 +15,29 @@ They try to stabilize the learning of GANs and thus, leads to convergence. Also,
 
 Consider the loss function $f(\theta_G, \theta_D)$ where $\theta_G$ is the tuple of parameters of the generator and $\theta_D$ is the tuple of parameters of the discriminator.
 
-Let optimal parameters be $\theta_G^*$ and $\theta_D^*$ for generator and discriminator respectively.
+Let optimal parameters be $\theta_G^* $ and $\theta_D^* $ for generator and discriminator respectively.
 
 Then, using the loss equation of vanilla GANs -
 
-$$\theta_G^* = \argmin_{\theta_G} \max_{\theta_D} f(\theta_G, \theta_D) = \argmin_{\theta_G} f(\theta_G, \theta_D^* (\theta_G))$$
-$$\theta_D^*(\theta_G) = \argmax_{\theta_D} f(\theta_G, \theta_D)$$
+$$\theta_G^* = argmin_{\theta_G} \max_{\theta_D} f(\theta_G, \theta_D) = argmin_{\theta_G} f(\theta_G, \theta_D^* (\theta_G))$$
+$$\theta_D^*(\theta_G) = argmax_{\theta_D} f(\theta_G, \theta_D)$$
 
 The main idea presented in this paper is that, the generator just tries to fool the discriminator at this point of time. However, this could lead to oscillation.
 
 An example of such oscillation -
 
-        Consider two generator states $\theta_{G_1}$ and $\theta_{G_2}$ and two corresponding discriminator states $\theta_{D_1}$ and $\theta_{D_2}$ respectively. Now, let's say generator before training, is currently at $\theta_{G_1}$ and the discriminator after training, is at $\theta_{D_1}$. Let the generator after training, go to state $\theta_{G_2}$ which fools the discriminator successfully.
+    Consider two generator states $\theta_{G_1}$ and $\theta_{G_2}$ and two corresponding discriminator states $\theta_{D_1}$ and $\theta_{D_2}$ respectively. Now, let's say generator before training, is currently at $\theta_{G_1}$ and the discriminator after training, is at $\theta_{D_1}$. Let the generator after training, go to state $\theta_{G_2}$ which fools the discriminator successfully.
 
-        Now, after training the discriminator, let the discriminator go to state $\theta_{D_2}$ and let's say, due to this, the generator can't fool it anymore.
+    Now, after training the discriminator, let the discriminator go to state $\theta_{D_2}$ and let's say, due to this, the generator can't fool it anymore.
 
-        Let's say that generator at state $\theta_{G_1}$ could successfully fool discriminator at state $\theta_{D_2}$. Then, after training the generator again, the generator could go back to state $\theta_{G_1}$ from state $\theta_{G_2}$.
+    Let's say that generator at state $\theta_{G_1}$ could successfully fool discriminator at state $\theta_{D_2}$. Then, after training the generator again, the generator could go back to state $\theta_{G_1}$ from state $\theta_{G_2}$.
 
-        This could lead to an endless oscillation.
+    This could lead to an endless oscillation.
 
 So, to avoid such as oscillation, the idea is to train the generator with respect to the approximate discriminator, a few steps into the future.
 
 Consider the following recursive definintion -
+
 $$\theta_D^0 = \theta_D$$
 $$\theta_D^{k+1} = \theta_D^k + \eta^k \frac{df(\theta_G, \theta_D^K)}{d \theta_D^k}$$
 
@@ -52,8 +53,9 @@ where $\theta_D^K$ represents using $\theta_G$ and $\theta_D$ as initial values 
 This means that the generator is updated using the approximate discriminator function from the future.
 
 However, the discriminator is updated in the same way as vanilla GANs, i.e. using only the current generator. So, the update equations are -
-$$\theta_G \rightarrow \theta_G - \eta \frac{df_K(\theta_G, \theta_D){d \theta_G}}$$
-$$\theta_D \rightarrow \theta_D + \eta \frac{df(\theta_G, \theta_D){d \theta_D}}$$
+
+$$\theta_G \rightarrow \theta_G - \eta \frac{df_K(\theta_G, \theta_D)}{d \theta_G}$$
+$$\theta_D \rightarrow \theta_D + \eta \frac{df(\theta_G, \theta_D)}{d \theta_D}$$
 
 ![]({{site.baseurl}}/images/unrolled_gans_proc.png)
 
