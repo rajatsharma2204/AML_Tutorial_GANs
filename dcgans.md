@@ -31,7 +31,7 @@ DCGANs provide the following general guidelines for constructing the CNN based G
    If the inputs to these non-linearities are either too positive (the output of Relu layers will likely have high positive value) or too negative, then tanh and sigmoid will saturate right in the beginning and would never learn anything. So, to avoid this saturation, a batch normalization has to be done so that the mean is close to 0 and variance is close to 1.
 
 3. Remove fully connected hidden layers for deeper architectures.
- 
+
    The idea here is that in several state of the art image classification models, global average pooling is used instead of fully connected layers to directly compute a global average of each activation map. Global average pooling tends to increase network stability but, could hurt convergence speed. So, instead, the output of the last convolutional layer is fed directly into the output of the discriminator and similarly, the input (i.e. noise) of the generator is directly fed in the first convolutional layer of the generator.
 
 4. Use ReLU activation for all layers in generator except for the last which uses tanh.
@@ -46,7 +46,7 @@ A model generator architecture is shown in the figure.
 
 ![]({{site.baseurl}}/images/generator.png)
 
-Empirically, it was observed that with learning rate 0.0002 and \beta_1 0.5 in Adam optimizer, instability was reduced even further.
+Empirically, it was observed that with learning rate $0.0002$ and $\beta_1$ $0.5$ in Adam optimizer, instability was reduced even further.
 
 ## Experiments
 
