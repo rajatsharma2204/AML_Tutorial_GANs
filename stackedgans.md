@@ -2,7 +2,7 @@
 layout: page
 title : Stacked GANs
 permalink: /stackedgans/
-ordinal: 3
+ordinal: 5
 ---
 
 Stacked GANs are top-down stack of GANs, each trained to generate “plausible” lower-level representations conditioned on higher-level representations. Prior to this there was quite success in bottom-up approach of discrimination by CNNs which is learning useful representations from the data, whereas learning top-down generative models will help to explain the data distribution and there was low success for data with large variations with state-of-the-art DNNs was still bad.

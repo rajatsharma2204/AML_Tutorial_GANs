@@ -2,7 +2,7 @@
 layout: page
 title : Spectral Normalization for GANs
 permalink: /spectralnormalization/
-ordinal: 4
+ordinal: 9
 ---
 
 The training of the discriminator amounts to the training of a good estimator for the density ratio between the model distribution and the target which is also employed in implicit models for variational optimization.
