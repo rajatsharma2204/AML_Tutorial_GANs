@@ -16,10 +16,10 @@ class GAN:
                 self.num_classes = 10
                         
                 gen_noise_input = Input(shape=(self.latent_space_dim,))
-                gen_noise_dense = Dense(256, activation='relu')(gen_noise_input)
+                gen_noise_dense = Dense(200, activation='relu')(gen_noise_input)
                 
                 gen_label_input = Input(shape=(10,))
-                gen_label_dense = Dense(1024, activation='relu')(gen_label_input)
+                gen_label_dense = Dense(1000, activation='relu')(gen_label_input)
                 
                 gen_merged = concatenate([gen_noise_dense, gen_label_dense]) 
                 gen_combined_dense1 = Dense(784, activation='tanh')(gen_merged)
@@ -34,8 +34,9 @@ class GAN:
                 dis_label_input = Input(shape=(10,))
                 dis_label_dense = MaxoutDense(50, 5)(dis_label_input)
                 
-                dis_merged = concatenate([dis_img_dense, dis_label_dense])       
-                dis_result = Dense(1, activation='sigmoid')(dis_merged)
+                dis_merged = concatenate([dis_img_dense, dis_label_dense])     
+                dis_combined_dense = MaxoutDense(240, 4)(dis_merged)
+                dis_result = Dense(1, activation='sigmoid')(dis_combined_dense)
                 
                 self.Discriminator = Model(inputs=[dis_img_input, dis_label_input], outputs=dis_result)
                 self.Discriminator.compile(loss = "binary_crossentropy", optimizer = Adam(0.0002, 0.5), metrics = ["accuracy"])
