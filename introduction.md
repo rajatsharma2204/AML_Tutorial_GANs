@@ -56,9 +56,9 @@ The noisy input is deconvoluted to form the final image.
 
 ## Experiments
 
-We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the Code folder.
+We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the [Code folder](https://github.com/rajatsharma2204/AML_Tutorial_GANs/tree/master/Code/Vanilla%20GANs).
 
-![]({{site.baseurl}}/images/gans_result.gif)
+![]({{site.baseurl}}/Code/Vanilla GANs/GANs_animated.gif)
 
 ## Problems associated with GANs
 

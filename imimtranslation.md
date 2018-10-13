@@ -2,7 +2,7 @@
 layout: page
 title : Image-to-Image Translation with Conditional Adversarial Networks
 permalink: /imimtranslation/
-ordinal: 7
+ordinal: 8
 ---
 
 We would like to investigate conditional adversarial networks as a general-purpose solution to image-to-image translation problems. This problem is “translating” an input image into a corresponding output image (across representations). This is shown in figure below:
