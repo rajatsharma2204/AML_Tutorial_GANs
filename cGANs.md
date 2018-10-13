@@ -35,7 +35,7 @@ This is illustrated in the below figure:
 1. **Generator:** (From paper) We trained a conditional adversarial net on MNIST images conditioned on their class labels encoded as one-hot vectors. Noise prior $z$ with dimensionality $100$ was drawn from a normal distribution. Both $z$ and $y$ are mapped to hidden layers with ReLu activation with layer sizes $200$ and $1000$ respectively, before both being mapped to second, combined hidden ReLu layer of dimensionality $1200$. We have a final tanh unit layer as our output for generating the $784$-dimensional MNIST samples.
 2. **Discriminator:** (From paper) The discriminator maps $x$ to a max-out layer with $240$ units and $5$ pieces, and $y$ to a max-out layer with $50$ units and $5$ pieces. Both the hidden layers are mapped to joint max-out layer with $240$ units and $4$ pieces before being fed to a sigmoid layer.
 3. **Model:** (From code) The model was trained using Adam with learning rate $\eta=0.0002$ and $\beta_1=0.5$
-4. (From code) We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the Code folder.
+4. (From code) We experimented on the MNIST dataset for handwritten digits. We observed the results as shown in figure. The code can be found in the [Code folder](https://github.com/rajatsharma2204/AML_Tutorial_GANs/tree/master/Code/cGANs).
 
 ![img]({{site.baseurl}}/Code/cGANs/cGANs_animated.gif)
 
