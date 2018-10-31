@@ -58,4 +58,4 @@ It can be proved that minimizing this is equivalent to maximizing a variational 
 
 ## References 
 
-- [Huang, Xun, et al. "Stacked Generative Adversarial Networks." *CVPR*. Vol. 2. 2017.](https://arxiv.org/pdf/1606.03657.pdf)
+- [Huang, Xun, et al. "Stacked Generative Adversarial Networks." *CVPR*. Vol. 2. 2017.](https://arxiv.org/pdf/1612.04357.pdf)
