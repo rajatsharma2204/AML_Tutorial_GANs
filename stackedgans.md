@@ -50,9 +50,9 @@ To prevent $G_i$ from completely ignoring $h_{i+1}$ we use $${\cal L}_{G_i}^{con
 
 ## Entropy Loss
 
-We would also like to have it not be completely deterministic and sufficiently diverse so we introduce the entropy loss $${\cal L}_{G_i}^{ent}​$$. We would want the conditional entropy  $H(\hat h_i\mid h_{i+1})​$ to be as high as possiblewhich turns out to be intractable, hence we maximize a variational lower bound on the conditional entropy by using an auxiliary distribution $Q_i(z_i\mid \hat h_i)​$ to approximate the true posterior  $p_i(z_i\mid \hat h_i)​$, which gives:
+We would also like to have it not be completely deterministic and sufficiently diverse so we introduce the entropy loss $${\cal L}_{G_i}^{ent}​$$. We would want the conditional entropy  $H(\hat h_i\mid h_{i+1})​$ to be as high as possible which turns out to be intractable, hence we maximize a variational lower bound on the conditional entropy by using an auxiliary distribution $Q_i(z_i\mid \hat h_i)​$ to approximate the true posterior  $p_i(z_i\mid \hat h_i)​$, which gives:
 
-  $${\cal L}^{ent}={\mathbb E}_{z_i\sim p_{z_i}}[{\mathbb E}_{\hat h_i\sim G_i(\hat h_i\mid z_i)}[-\log Q_i(z_i\mid \hat h_i)]]$$ .
+  $${\cal L}^{ent}_{G_i}={\mathbb E}_{z_i\sim p_{z_i}}[{\mathbb E}_{\hat h_i\sim G_i(\hat h_i\mid z_i)}[-\log Q_i(z_i\mid \hat h_i)]]$$ .
 
 It can be proved that minimizing this is equivalent to maximizing a variational lower bound for  $H(\hat h_i\mid h_{i+1})$ . In practice we parametrize  $Q_i$ with a deep network that predicts the posterior distribution of $z_i$ given $\hat h_i$ . In each iteration we update both  $G_i$ and $Q_i$ to minimize ${\cal L}_{G_i}^{ent}$
 
